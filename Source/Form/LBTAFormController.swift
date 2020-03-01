@@ -8,13 +8,15 @@
 import UIKit
 
 #if os(iOS)
-@available(iOS 11.0, *)
+@available(iOS 10.0, *)
 open class LBTAFormController: UIViewController {
     
     var lowestElement: UIView!
     public lazy var scrollView: UIScrollView = {
         let sv = UIScrollView()
-        sv.contentInsetAdjustmentBehavior = .never
+        if #available(iOS 11.0, *) {
+            sv.contentInsetAdjustmentBehavior = .never
+        }
         sv.contentSize = view.frame.size
         sv.keyboardDismissMode = .interactive
         return sv
